@@ -1,0 +1,19 @@
+---
+const {img, tittle, date, text} = Astro.props
+---
+
+<div class="m-auto max-w-screen-md justify-center mb-4">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row ">
+
+            <img src={img} class="size-10" alt={tittle}>
+            <h4 class="font-poppins font-semibold text-2.5xl ml-2">
+                {tittle}
+            </h4>
+        </div>
+        <h5 class="font-poppins font-medium text-lg text-secondary-txt text-pretty text-center h-5">{date}</h5>
+    </div>
+    <p class="font-poppins font-light text-sm text-wrap text-secondary-txt">
+        {text}
+    </p>
+</div>

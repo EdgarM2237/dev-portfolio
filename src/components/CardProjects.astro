@@ -1,0 +1,30 @@
+---
+const { tittle, img, href } = Astro.props;
+---
+
+<div class="justify-center m-auto">
+  <div class="max-w-[390px] max-h-[300px] min-h-[300px] rounded-2xl bg-header justify-self-center group transform transition duration-500 hover:scale-105">
+    <img
+      class="w-full rounded-t-2xl object-fill h-[240px]"
+      src={img}
+      alt="Sunset in the mountains"
+    />
+    <div class="px-6 flex flex-row justify-between items-center">
+      <div class="">
+        <div
+          class="font-extrabold text-[10px] font-poppins text-secondary mt-3"
+        >
+          CLICK HERE TO VISIT
+        </div>
+        <h4 class="font-extrabold font-poppins text-lg leading-5 mb-3">
+          {tittle}
+        </h4>
+      </div>
+      <div >
+        <a href="#">
+          <img src="/View Icon.svg" alt="Visitar pagina" />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
