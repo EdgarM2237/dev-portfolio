@@ -1,13 +1,105 @@
-<header class="bg-header">
-    <div class="max-w-[810px] flex flex-row justify-between content-center h-16 m-auto ">
-        <a href="#" class="size-16">
-            <img src="/logo.svg" alt="Logo Portafolio">
+---
+const navItems = [
+  {
+    title: "About me",
+    label: "about",
+    url: "/#about",
+  },
+  {
+    title: "Projects",
+    label: "projects",
+    url: "/#projects",
+  },
+  {
+    title: "Experience",
+    label: "experience",
+    url: "/#experience",
+  },
+
+  {
+    title: "Contact",
+    label: "contact",
+    url: "mailto:edgarmendezcruz75@gmail.com",
+  },
+];
+---
+
+<header class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
+    <nav class="flex px-3 text-sm font-medium rounded-full text-gray-600 justify-center items-center">
+      {navItems.map((link) => (
+        <a
+          class="relative block px-2 py-2 transition hover:text-secondary-txt text-light"
+          aria-label={link.label}
+          href={link.url}
+        >
+          {link.title}
         </a>
-        <div class="text-lg flex flex-row gap-6 font-jakarta py-5">
-            <a href="#" class="hover:opacity-90">Home</a>
-            <a href="#" class="hover:opacity-90">Projects</a>
-            <a href="#" class="hover:opacity-90">Experience</a>
-            <a href="#" class="hover:opacity-90">Contact</a>
-        </div>
-    </div>
-</header>
+      ))}
+    </nav>
+  </header>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+  console.log("El evento astro:page-load ha sido disparado");
+  // Tu código aquí
+});
+    document.addEventListener("astro:page-load", () => {
+      const sections = document.querySelectorAll("section");
+      const navItems = document.querySelectorAll("header nav a");
+
+      const callback = (entries: any[]) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navItems.forEach((item) => {
+
+              if (item.getAttribute("aria-label") === entry.target.id) {
+                item.classList.add("text-secondary-txt");
+              } else {
+                item.classList.remove("text-secondary-txt");
+                item.classList.add("text-light");
+              }
+            });
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(callback, {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3,
+      });
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Cleanup
+      document.onvisibilitychange = () => {
+        if (document.visibilityState === "hidden") {
+          observer.disconnect();
+        } else {
+          sections.forEach((section) => {
+            observer.observe(section);
+          });
+        }
+      };
+    });
+  </script>
+
+  <style>
+    nav {
+      animation: nav-shadow 1s linear both;
+    }
+
+    @keyframes nav-shadow {
+      0% {
+        background-color: rgba(34, 34, 34, 0);
+      }
+      to {
+        background-color: rgba(34,34, 34, 0.9);
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+    }
+  </style>
