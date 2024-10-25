@@ -15,13 +15,11 @@ export default {
             light: "#FFF",
             dark: "#000",
             secondary: "#C5C5C5",
-            "secondary-txt": "#8491A0"
+            "secondary-txt": "#8491A0",
+            selected:"#9a33ff"
         },
         backgroundSize:{
             "general-size": "656px"
-        },
-        fontSize: {
-            "2.5xl":"1.75rem"
         }
 	},
 
